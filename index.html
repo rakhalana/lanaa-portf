@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Personal portfolio — Software Engineering, Machine Learning, and Data Systems.">
+  <title>Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="page-progress" aria-hidden="true"></div>
+  <div class="cursor-aura" aria-hidden="true"></div>
+
+  <main class="shell">
+    <!-- 00 // Top Telemetry & Availability Rail -->
+    <!-- <div class="telemetry-bar" id="telemetry-mount" aria-label="Status and local time"></div> -->
+
+    <!-- Open Hero Header -->
+    <header id="hero-mount"></header>
+
+    <!-- 01 // Experience (Segmented Filter + Interactive Timeline Rail) -->
+    <section class="section" aria-labelledby="experience-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">01 //</span>
+          <h2 id="experience-title">Experience</h2>
+        </div>
+        <div class="section-controls">
+          <div class="filter-tabs" id="experience-tabs" role="tablist" aria-label="Filter experience by category"></div>
+        </div>
+      </div>
+      <div class="experience-list" id="experience-list"></div>
+    </section>
+
+    <!-- 02 // Capabilities (Unboxed Skills Matrix) -->
+    <section class="section" aria-labelledby="skills-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">02 //</span>
+          <h2 id="skills-title">Capabilities</h2>
+        </div>
+      </div>
+      <div class="skill-rows" id="skills-list"></div>
+    </section>
+
+    <!-- 03 // Selected Projects (2-Column Editorial Bento Grid) -->
+    <section class="section" aria-labelledby="projects-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">03 //</span>
+          <h2 id="projects-title">Selected projects</h2>
+        </div>
+        <a class="see-more-link" id="projects-repo-link" href="https://github.com/" target="_blank"
+          rel="noopener noreferrer">
+          All repositories ↗
+        </a>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </section>
+
+    <!-- 04 // Credentials (Separated Education & Certifications Ledger) -->
+    <section class="section" aria-labelledby="credentials-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">04 //</span>
+          <h2 id="credentials-title">Education &amp; Certifications</h2>
+        </div>
+        <div class="section-controls">
+          <div class="filter-tabs" id="credentials-tabs" role="tablist"
+            aria-label="Filter education and certifications"></div>
+        </div>
+      </div>
+      <div class="credentials-list" id="credentials-list"></div>
+    </section>
+  </main>
+
+  <!-- Single Source of Truth Data Config + Vanilla JS Engine -->
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
