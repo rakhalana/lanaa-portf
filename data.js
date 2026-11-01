@@ -9,53 +9,50 @@ window.PORTFOLIO_DATA = {
   profile: {
     indexLabel: "00 // PORTFOLIO",
     name: "Rakha Maulana",
-    role: "Software Engineering · Machine Learning · Data Systems",
+    role: "Frontend & Web Development · IT Operations · Data Systems · Esport Event Enthusiast",
     city: "Surabaya, Indonesia",
     locationUrl: "https://www.google.com/maps?q=Surabaya,Indonesia",
     timezone: "Asia/Jakarta",
     timezoneLabel: "WIB (UTC+7)",
-    status: {
-      available: true,
-      label: "Available for select roles & projects"
-    },
+
     bio: [
-      "I am based in {location}. I work across full-stack software engineering, applied machine learning, and data analytics—building predictive models, scalable APIs, and production web systems.",
-      "I use TypeScript, Python, SQL, and modern cloud tools to turn complex operational problems into fast, reliable digital products."
+      "I am an Information Systems graduate based in {location}, with hands-on experience in frontend web development, enterprise IT operations, and data-driven web systems. I focus on translating UI/UX designs into responsive, production-ready interfaces while supporting reliable IT infrastructure and internal platforms.",
+      "My work spans modern web development with TypeScript, React, Next.js, and Laravel, alongside system operations, usability testing, and data analytics—complemented by a side passion for digital media and esport event coordination."
     ],
-    actions: {
-      primary: {
-        label: "Book a call",
-        url: "https://cal.com/",
-        icon: "calendar"
-      },
-      secondary: {
-        label: "Email",
-        url: "mailto:rakha@example.com",
-        icon: "mail"
-      },
-      resumeUrl: "./assets/resume.pdf"
-    },
+    // actions: {
+    //   primary: {
+    //     label: "Book a call",
+    //     url: "https://cal.com/",
+    //     icon: "calendar"
+    //   },
+    //   secondary: {
+    //     label: "Email",
+    //     url: "mailto:rakha@example.com",
+    //     icon: "mail"
+    //   },
+    //   resumeUrl: "./assets/resume.pdf"
+    // },
     socials: [
       {
         label: "GitHub profile",
         icon: "github",
-        url: "https://github.com/"
+        url: "https://github.com/rakhalana"
       },
       {
         label: "LinkedIn profile",
         icon: "linkedin",
-        url: "https://www.linkedin.com/"
+        url: "https://www.linkedin.com/in/rakha-maulanaa/"
       },
       {
         label: "Send email",
         icon: "mail",
-        url: "mailto:rakha@example.com"
+        url: "mailto:rakharfd123@gmail.com"
       },
-      {
-        label: "View résumé PDF",
-        icon: "file-text",
-        url: "./assets/resume.pdf"
-      }
+      // {
+      //   label: "View résumé PDF",
+      //   icon: "file-text",
+      //   url: "./assets/resume.pdf"
+      // }
     ]
   },
 
@@ -65,7 +62,7 @@ window.PORTFOLIO_DATA = {
   experienceCategories: [
     { id: "professional", label: "Professional" },
     { id: "organization", label: "Organization" },
-    { id: "freelance", label: "Freelance" }
+    { id: "volunteer", label: "Volunteer" }
   ],
   experience: [
     {
@@ -73,7 +70,7 @@ window.PORTFOLIO_DATA = {
       role: "IT Operational Intern",
       company: "Pelindo Terminal Petikemas Teluk Lamong",
       category: "professional",
-      icon: "monitor-check",
+      icon: "pelindo",
       period: "Jul 2026 – Nov 2026",
       location: "Surabaya · On-site",
       expandedByDefault: true,
@@ -87,7 +84,7 @@ window.PORTFOLIO_DATA = {
       role: "Frontend Developer Intern",
       company: "ORDO Apps (PT Ordo Teknologi Karya)",
       category: "professional",
-      icon: "scatter-chart",
+      icon: "ordo",
       period: "Feb 2025 – Jun 2025",
       location: "Jakarta · On-site",
       expandedByDefault: false,
@@ -102,7 +99,7 @@ window.PORTFOLIO_DATA = {
       role: "Head of Media and Information",
       company: "Veteran Esport",
       category: "organization",
-      icon: "network-nodes",
+      icon: "veteran-esport",
       period: "Jan 2025 – Jan 2026",
       location: "Surabaya",
       expandedByDefault: false,
@@ -117,27 +114,58 @@ window.PORTFOLIO_DATA = {
       role: "Media and Information Staff",
       company: "Veteran Esport",
       category: "organization",
-      icon: "cpu",
+      icon: "veteran-esport",
       period: "Jan 2024 – Jan 2025",
       location: "Surabaya",
       expandedByDefault: false,
       bullets: [
         "Produced 40+ publication assets using Canva and Figma, including mandatory organizational posts, general announcements, athlete features, and match results, contributing to 5% growth in social media reach.",
-        "Created an interactive Streamlit analytics dashboard in Python to visualize multi-year urban mobility datasets."
+        "Documented and edited photo and video assets for 10 events (tournaments and work programs), delivering media on schedule for each activity"
       ]
     },
     {
       id: "exp-5",
-      role: "Independent Full-Stack & UI/UX Consultant",
-      company: "Self-Employed · Studio Work",
-      category: "freelance",
-      icon: "pen-tool",
-      period: "Jul 2023 – Present",
-      location: "Remote",
+      role: "Manpower: Tournament Room Admin & Spectator",
+      event: "Grand Tournament MLBB Goes to School 2025",
+      organizer: "MOONTON Games",
+      category: "volunteer",
+      icon: "moonton",
+      period: "Jan 2026",
+      location: "Surabaya",
       expandedByDefault: false,
       bullets: [
-        "Designed and shipped custom web interfaces, analytical dashboards, and 20+ reusable Figma design system components for SME clients.",
-        "Conducted usability testing with 50+ participants, achieving SUS scores above 88."
+        "Coordinated 12 knockout-phase matches across a 4-day tournament as Tournament Room Admin, managing dedicated match rooms and keeping rounds on schedule.",
+        "Liaised with league ops, team managers, and players to confirm match readiness and resolve in-game issues in real time. Operated as in-game spectator, displaying the live match feed on-screen for the on-site audience."
+      ]
+    },
+    {
+      id: "exp-6",
+      role: "Publication & Documentation",
+      event: "EVOS Watch Party MPL Season 15",
+      organizer: "EVOS X Veteran Esport",
+      category: "volunteer",
+      icon: "evos",
+      period: "Apr 2025",
+      location: "Surabaya",
+      expandedByDefault: false,
+      bullets: [
+        // "Coordinated 12 knockout-phase matches across a 4-day tournament as Tournament Room Admin, managing dedicated match rooms and keeping rounds on schedule.",
+        // "Liaised with league ops, team managers, and players to confirm match readiness and resolve in-game issues in real time. Operated as in-game spectator, displaying the live match feed on-screen for the on-site audience."
+      ]
+    },
+    {
+      id: "exp-7",
+      role: "Head of Publication & Documentation",
+      event: "VESTJAVA (Veteran Esport East Java Tournament) 2024",
+      organizer: "Veteran Esport",
+      category: "volunteer",
+      icon: "vestjava",
+      period: "Apr 2024 - Jul 2024",
+      location: "Surabaya",
+      expandedByDefault: false,
+      bullets: [
+        "Overseeing promotion, on-site documentation, and result publication for 64 teams across 2 game titles (MLBB and PUBG)",
+        // "Liaised with league ops, team managers, and players to confirm match readiness and resolve in-game issues in real time. Operated as in-game spectator, displaying the live match feed on-screen for the on-site audience."
       ]
     }
   ],
@@ -151,12 +179,11 @@ window.PORTFOLIO_DATA = {
       items: [
         { name: "TypeScript", iconSlug: "typescript" },
         { name: "JavaScript", iconSlug: "javascript" },
+        { name: "PHP", iconSlug: "php" },
         { name: "Python", iconSlug: "python" },
         { name: "SQL", customIcon: "database" },
         { name: "HTML", iconSlug: "html5" },
-        { name: "CSS", iconSlug: "css" },
-        { name: "PHP", iconSlug: "php" },
-        { name: "Dart", iconSlug: "dart" }
+        { name: "CSS", iconSlug: "css" }
       ]
     },
     {
@@ -164,110 +191,103 @@ window.PORTFOLIO_DATA = {
       items: [
         { name: "React", iconSlug: "react" },
         { name: "Next.js", iconSlug: "nextdotjs" },
+        { name: "Laravel Blade", iconSlug: "laravel" },
         { name: "Tailwind CSS", iconSlug: "tailwindcss" },
-        { name: "shadcn/ui", iconSlug: "shadcnui" },
-        { name: "Motion", customIcon: "motion" }
+        { name: "Sass / SCSS", iconSlug: "sass" },
+        { name: "Vite", iconSlug: "vite" },
+        { name: "Leaflet.js", iconSlug: "leaflet" }
       ]
     },
     {
-      category: "Backend",
+      category: "Backend & DB",
       items: [
+        { name: "Laravel", iconSlug: "laravel" },
         { name: "Node.js", iconSlug: "nodedotjs" },
-        { name: "Bun", iconSlug: "bun" },
+        { name: "FastAPI", iconSlug: "fastapi" },
+        { name: "MySQL", iconSlug: "mysql" },
         { name: "PostgreSQL", iconSlug: "postgresql" },
-        { name: "Redis", iconSlug: "redis" },
-        { name: "Drizzle", iconSlug: "drizzle" },
-        { name: "MongoDB", iconSlug: "mongodb" },
-        { name: "MySQL", iconSlug: "mysql" }
+        { name: "Supabase", iconSlug: "supabase" },
+        { name: "REST API", iconSlug: "postman" }
       ]
     },
     {
-      category: "AI / ML",
-      items: [
-        { name: "TensorFlow", iconSlug: "tensorflow" },
-        { name: "Scikit-learn", iconSlug: "scikitlearn" },
-        { name: "XGBoost", customIcon: "nodes" },
-        { name: "GRU / LSTM", customIcon: "nodes" },
-        { name: "CNN", customIcon: "nodes" },
-        { name: "TensorFlow.js", iconSlug: "tensorflow" }
-      ]
-    },
-    {
-      category: "Data",
+      category: "Data & Analytics",
       items: [
         { name: "pandas", iconSlug: "pandas" },
         { name: "NumPy", iconSlug: "numpy" },
-        { name: "Streamlit", iconSlug: "streamlit" },
-        { name: "Plotly", iconSlug: "plotly" },
-        { name: "Seaborn", customIcon: "barchart" },
-        { name: "Tableau", customIcon: "sparkle-grid" }
+        { name: "Looker Studio", iconSlug: "looker" },
+        { name: "Google Colab", iconSlug: "googlecolab" },
+        { name: "Google Sheets", iconSlug: "googlesheets" },
+        { name: "AHP & Profile Matching", customIcon: "nodes" },
+        { name: "Turf.js", customIcon: "sparkle-grid" }
       ]
     },
     {
-      category: "Infrastructure",
+      category: "DevOps & Tools",
       items: [
-        { name: "Google Cloud", iconSlug: "googlecloud" },
-        { name: "Cloudflare", iconSlug: "cloudflare" },
-        { name: "Vercel", iconSlug: "vercel" },
         { name: "Docker", iconSlug: "docker" },
-        { name: "Linux", iconSlug: "linux" },
-        { name: "Supabase", iconSlug: "supabase" }
+        { name: "Git", iconSlug: "git" },
+        { name: "GitHub", iconSlug: "github" },
+        { name: "Vercel", iconSlug: "vercel" },
+        { name: "Laragon", iconSlug: "laragon" },
+        { name: "Vitest", iconSlug: "vitest" },
+        { name: "Postman", iconSlug: "postman" }
       ]
     },
     {
       category: "Design & Ops",
       items: [
         { name: "Figma", iconSlug: "figma" },
-        { name: "GitHub", iconSlug: "github" },
-        { name: "UI/UX Systems", customIcon: "pen-nib" },
-        { name: "Network & Server Ops", customIcon: "server" }
+        { name: "Canva", customIcon: "pen-nib" },
+        { name: "UI/UX & Usability Testing", customIcon: "pen-nib" },
+        { name: "ITSM & Network Ops", customIcon: "server" }
       ]
     }
   ],
 
   // ===========================================================================
-  // 03 // SELECTED PROJECTS (2-Column Editorial Grid + Tech Stack Footer)
+  // 03 // SELECTED PROJECTS (2-Column Editorial Grid + Multi-Link Actions)
   // ===========================================================================
   projectsHeaderLink: {
     label: "All repositories ↗",
-    url: "https://github.com/"
+    url: "https://github.com/rakhalana"
   },
   projects: [
     {
       id: "proj-1",
-      name: "ADRO Stock Forecasting & Risk Engine",
-      description: "Evaluated 48 GRU architectures across 2,541 daily market observations, achieving 2.24% MAPE and 3.48% one-day Value at Risk estimation.",
-      tag: "ML · Forecasting",
-      stack: ["Python", "TensorFlow", "GRU", "Risk Analytics"],
-      icon: "candlestick",
-      url: "https://github.com/"
+      name: "MARTA - Monitoring and Administration of Terminal Waiting Area",
+      description: "---On Working.",
+      tag: "Web App · Operations",
+      stack: ["React 19", "TypeScript", "Vite", "Vitest"],
+      icon: "monitor-check",
+      links: [
+        { label: "GitHub ↗", url: "https://github.com/rakhalana/marta/" },
+        { label: "Demo ↗", url: "https://marta-phi-seven.vercel.app/" }
+      ]
     },
     {
       id: "proj-2",
-      name: "Createch Face Recognition Attendance",
-      description: "Engineered a MobileNetV2 biometric pipeline on 650 employee images, validated via stratified 5-fold cross-validation and a 130-image holdout.",
-      tag: "ML · Computer Vision",
-      stack: ["Python", "MobileNetV2", "OpenCV", "Scikit-learn"],
-      icon: "scan-face",
-      url: "https://github.com/"
+      name: "SEARAH - Route-Based Food Discovery",
+      description: "Built an interactive geospatial web app that recommends restaurants and cafés along travel routes using OpenRouteService and Turf.js detour scoring, with dual POI providers (Google Places & Overpass API) and 0ms client-side filtering.",
+      tag: "Web App · Geospatial",
+      stack: ["Next.js", "TypeScript", "Tailwind CSS", "Leaflet", "Turf.js"],
+      icon: "map-pin",
+      links: [
+        { label: "GitHub ↗", url: "https://github.com/rakhalana/searah" }
+      ]
     },
     {
       id: "proj-3",
-      name: "Antam Gold Price Prediction Dashboard",
-      description: "Benchmarked LSTM vs. GRU models on macroeconomic indicators (1.47% MAPE) and shipped a full-stack 1-to-90-day forecasting web app.",
-      tag: "Full-Stack · ML",
-      stack: ["React", "Flask", "LSTM / GRU", "Plotly"],
+      name: "Sidoarjo MSME Product Evaluation",
+      description: "Built a web-based Decision Support System (DSS) using AHP and Profile Matching to evaluate, grade, and rank 50 MSME products across 9 curation criteria.",
+      tag: "Web App · DSS",
+      stack: ["Laravel", "PHP", "MySQL", "AHP · Profile Matching"],
       icon: "layers",
-      url: "https://github.com/"
-    },
-    {
-      id: "proj-4",
-      name: "VegeCare Plant Disease Classification API",
-      description: "Built a low-latency REST API powered by MobileNetV2 to classify crop leaf diseases from photos and return automated treatment guidance.",
-      tag: "AI · Backend API",
-      stack: ["Flask", "TensorFlow", "Docker", "Google Cloud"],
-      icon: "leaf",
-      url: "https://github.com/"
+      links: [
+        { label: "Calc ↗", url: "https://docs.google.com/spreadsheets/d/1HRCRHNd_a4lqxQNOe-nHzXUOzRdI50nRSVo0fpykRUc/edit?usp" },
+        { label: "GitHub ↗", url: "https://github.com/rakhalana/dss-kurasi-demo" },
+        { label: "Demo ↗", url: "https://dss-kurasiumkm-demo.vercel.app/" }
+      ]
     },
     {
       id: "proj-5",
@@ -276,16 +296,22 @@ window.PORTFOLIO_DATA = {
       tag: "UI/UX · Product",
       stack: ["Figma", "Design System", "Prototyping", "Usability"],
       icon: "shopping-bag",
-      url: "https://www.figma.com/"
+      links: [
+        { label: "Mobile Proto ↗", url: "https://www.figma.com/proto/oyWm256ZJDkIYw1UlmuLdK/Thriftopia-Rcopy?node-id=8209-7042&p=f&t=UMlBSpmrN30XHRbA-1&scaling=scale-down&content-scaling=fixed&page-id=8001%3A1141&starting-point-node-id=8827%3A4562" },
+        { label: "Desktop Proto ↗", url: "https://www.figma.com/proto/oyWm256ZJDkIYw1UlmuLdK/Thriftopia-Rcopy?node-id=9486-4405&p=f&t=k1o8wY8hCNPA9uFb-1&scaling=scale-down&content-scaling=fixed&page-id=9481%3A3826&starting-point-node-id=9486%3A4405&show-proto-sidebar=1" }
+      ]
     },
     {
       id: "proj-6",
-      name: "EcoFood Surplus Distribution Platform",
-      description: "Architected a multi-role surplus-food rescue interface reaching 97.14% consumer task effectiveness and SUS scores of 92 and 89.5.",
-      tag: "UI/UX · Product",
-      stack: ["Figma", "User Research", "SUS Evaluation"],
-      icon: "eco-circle",
-      url: "https://www.figma.com/"
+      name: "Brazilian Ecommerce Dashboard",
+      description: "Analyzed 99,441 Olist e-commerce orders (R$ 16.01M revenue) and cleaned 279K+ geolocation records in Python, delivering an interactive Looker Studio dashboard tracking regional sales, 89.2% on-time delivery rate, and customer satisfaction.",
+      tag: "Data Analytics · BI",
+      stack: ["Python", "pandas", "Google Colab", "Looker Studio"],
+      icon: "scatter-chart",
+      links: [
+        { label: "Dashboard ↗", url: "https://datastudio.google.com/u/0/reporting/641d47fd-b6b5-4f99-9b96-556c3cf8402a/page/IkzXE" },
+        { label: "Slideshow ↗", url: "https://docs.google.com/presentation/d/1MAsGcRPOIA7TvJfDSiGJZGp3mo_IUnKp/edit?usp=sharing&ouid=101130327753642175610&rtpof=true&sd=true" }
+      ]
     }
   ],
 
@@ -308,42 +334,19 @@ window.PORTFOLIO_DATA = {
       period: "2022 – 2026",
       meta: "Surabaya",
       url: ""
-    },
-    {
-      id: "cred-2",
-      type: "certification",
-      badgeLabel: "Certification",
-      icon: "shield-check",
-      title: "TensorFlow Developer Certificate",
-      subtitle: "Google & TensorFlow Certificate Program",
-      highlight: "ID: TF-DEV-2025",
-      period: "Issued 2025",
-      meta: "Verify ↗",
-      url: "https://www.tensorflow.org/certificate"
-    },
-    {
-      id: "cred-3",
-      type: "certification",
-      badgeLabel: "Certification",
-      icon: "shield-check",
-      title: "Bangkit Machine Learning Distinction Graduate",
-      subtitle: "Google, GoTo, and Traveloka Career Readiness Program",
-      highlight: "Score: 95.20 (Grade A)",
-      period: "Issued 2025",
-      meta: "Verify ↗",
-      url: "https://grow.google/intl/id_id/bangkit/"
-    },
-    {
-      id: "cred-4",
-      type: "certification",
-      badgeLabel: "Certification",
-      icon: "shield-check",
-      title: "Expert Data Scientist Path Certificate",
-      subtitle: "Indosat Ooredoo Hutchison Digital Camp (IDCamp)",
-      highlight: "Top 0.5% Cohort",
-      period: "Issued 2025",
-      meta: "Verify ↗",
-      url: "https://idcamp.ioh.co.id/"
     }
+    // ,
+    // {
+    //   id: "cred-2",
+    //   type: "certification",
+    //   badgeLabel: "Certification",
+    //   icon: "shield-check",
+    //   title: "TensorFlow Developer Certificate",
+    //   subtitle: "Google & TensorFlow Certificate Program",
+    //   highlight: "ID: TF-DEV-2025",
+    //   period: "Issued 2025",
+    //   meta: "Verify ↗",
+    //   url: "https://www.tensorflow.org/certificate"
+    // }
   ]
 };
