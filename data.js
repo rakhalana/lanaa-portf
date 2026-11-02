@@ -256,7 +256,7 @@ window.PORTFOLIO_DATA = {
     {
       id: "proj-1",
       name: "MARTA - Monitoring and Administration of Terminal Waiting Area",
-      description: "---On Working.",
+      description: "Developing a simulated real-time monitoring dashboard for the 66-slot truck waiting area at Terminal Teluk Lamong to track bay allocations, sensor occupancy, and operational alerts. (Currently under active development)",
       tag: "Web App · Operations",
       stack: ["React 19", "TypeScript", "Vite", "Vitest"],
       icon: "monitor-check",
