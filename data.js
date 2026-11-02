@@ -104,7 +104,7 @@ window.PORTFOLIO_DATA = {
       location: "Surabaya",
       expandedByDefault: false,
       bullets: [
-        "Led a 5-member Media and Information division, increasing social media followers by 5% and engagement by [X]% through structured content planning and a 3-post monthly publishing schedule.",
+        "Led a 5-member Media and Information division, increasing social media followers by 5% and engagement by 7% through structured content planning and a 3-post monthly publishing schedule.",
         "Directed the division’s annual work program and content calendar, coordinating 60+ content pieces across 14 esport events, and evaluating member performance.",
         "Established a publication SOP and reusable design templates as the division’s visual standard, improving cross-division coordination."
       ]
