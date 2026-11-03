@@ -334,19 +334,18 @@ window.PORTFOLIO_DATA = {
       period: "2022 – 2026",
       meta: "Surabaya",
       url: ""
+    },
+    {
+      id: "cred-2",
+      type: "certification",
+      badgeLabel: "Certification",
+      icon: "shield-check",
+      title: "Junior Web Programmer",
+      subtitle: "Lembaga Sertifikasi Profesi (LSP) · BNSP",
+      highlight: "Certified",
+      period: "Dec 2025 – Dec 2028",
+      meta: "Verify ↗",
+      url: "https://"
     }
-    // ,
-    // {
-    //   id: "cred-2",
-    //   type: "certification",
-    //   badgeLabel: "Certification",
-    //   icon: "shield-check",
-    //   title: "TensorFlow Developer Certificate",
-    //   subtitle: "Google & TensorFlow Certificate Program",
-    //   highlight: "ID: TF-DEV-2025",
-    //   period: "Issued 2025",
-    //   meta: "Verify ↗",
-    //   url: "https://www.tensorflow.org/certificate"
-    // }
   ]
 };
