@@ -658,6 +658,12 @@ button {
   border: 1px solid var(--cat-free-border);
 }
 
+.cat-badge[data-cat="course"] {
+  color: #93c5fd;
+  background: rgba(147, 197, 253, 0.1);
+  border: 1px solid rgba(147, 197, 253, 0.25);
+}
+
 .exp-summary-right {
   display: inline-flex;
   align-items: center;
@@ -1059,6 +1065,10 @@ svg.skill-icon {
   color: var(--cat-pro-text);
 }
 
+.cred-row[data-type="course"] .cred-icon-well {
+  color: #93c5fd;
+}
+
 .cred-icon-well svg {
   width: 15px;
   height: 15px;
@@ -1116,6 +1126,12 @@ svg.skill-icon {
   color: var(--cat-pro-text);
   background: var(--cat-pro-bg);
   border-color: var(--cat-pro-border);
+}
+
+.cred-row[data-type="course"] .cred-highlight-pill {
+  color: #93c5fd;
+  background: rgba(147, 197, 253, 0.1);
+  border-color: rgba(147, 197, 253, 0.25);
 }
 
 .cred-meta {

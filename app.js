@@ -57,6 +57,7 @@
     "eco-circle": `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M17 7c-5 0-8 2-8 5a3 3 0 0 0 3 3c3 0 5-3 5-8Zm-9 10 6-6"/></svg>`,
 
     // Credential Icons
+    "book-open": `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
     "graduation-cap": `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v5c3 2 7 2 10 0v-5"/></svg>`,
     "shield-check": `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3Z"/><path d="m9.2 12 2 2 3.8-3.8"/></svg>`
   };
@@ -453,7 +454,8 @@
     const allCreds = data.credentials || [];
     const categories = data.credentialCategories || [
       { id: "education", label: "Education" },
-      { id: "certification", label: "Certifications" }
+      { id: "certification", label: "Certifications" },
+      { id: "course", label: "Courses" }
     ];
 
     tabsMount.innerHTML = categories
@@ -496,7 +498,12 @@
         const hrefAttrs = hasUrl
           ? `href="${escapeHtml(cred.url)}" target="_blank" rel="noopener noreferrer"`
           : "";
-        const isCert = cred.type === "certification";
+        const defaultIcon =
+          cred.type === "certification"
+            ? "shield-check"
+            : cred.type === "course"
+            ? "book-open"
+            : "graduation-cap";
 
         return `
           <${tag}
@@ -506,7 +513,7 @@
             ${hrefAttrs}
           >
             <span class="cred-icon-well" aria-hidden="true">
-              ${getIcon(cred.icon || (isCert ? "shield-check" : "graduation-cap"))}
+              ${getIcon(cred.icon || defaultIcon)}
             </span>
             <div class="cred-main">
               <div class="cred-title-line">
@@ -525,7 +532,9 @@
               <span class="cred-period">${escapeHtml(cred.period)}</span>
               ${hasUrl
             ? `<span class="cred-verify">${escapeHtml(cred.meta || "Verify ↗")}</span>`
-            : `<span class="cred-location">${escapeHtml(cred.meta || "")}</span>`
+            : cred.meta && cred.meta !== "Verify ↗"
+            ? `<span class="cred-location">${escapeHtml(cred.meta)}</span>`
+            : ""
           }
             </div>
           </${tag}>

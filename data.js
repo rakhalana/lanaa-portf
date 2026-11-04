@@ -320,7 +320,8 @@ window.PORTFOLIO_DATA = {
   // ===========================================================================
   credentialCategories: [
     { id: "education", label: "Education" },
-    { id: "certification", label: "Certifications" }
+    { id: "certification", label: "Certifications" },
+    { id: "course", label: "Courses" }
   ],
   credentials: [
     {
@@ -346,6 +347,30 @@ window.PORTFOLIO_DATA = {
       period: "Dec 2025 – Dec 2028",
       meta: "Verify ↗",
       url: "https://"
+    },
+    {
+      id: "cred-3",
+      type: "course",
+      badgeLabel: "Course",
+      icon: "book-open",
+      title: "Data Analyst",
+      subtitle: "Cakap",
+      highlight: "Course",
+      period: "Completed",
+      meta: "Verify ↗",
+      url: ""
+    },
+    {
+      id: "cred-4",
+      type: "course",
+      badgeLabel: "Course",
+      icon: "book-open",
+      title: "UI/UX (Hipster Cohort)",
+      subtitle: "Gerakan Nasional 1000 Startup Digital",
+      highlight: "Course",
+      period: "Completed",
+      meta: "Verify ↗",
+      url: ""
     }
   ]
 };
