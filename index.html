@@ -160,7 +160,7 @@
       "name": "Brazilian Ecommerce Dashboard",
       "description": "Analyzed 99,441 Olist e-commerce orders (R$ 16.01M revenue) and cleaned 279K+ geolocation records in Python, delivering an interactive Looker Studio dashboard tracking regional sales, 89.2% on-time delivery rate, and customer satisfaction.",
       "keywords": "Python, pandas, Google Colab, Looker Studio",
-      "url": "https://datastudio.google.com/u/0/reporting/641d47fd-b6b5-4f99-9b96-556c3cf8402a/page/IkzXE"
+      "url": "https://colab.research.google.com/drive/13F0IpE8kzDx78wtJsLZ0_MAcQa2I0HYm#scrollTo=gEjkpf6Oyv6G"
     }
   ],
   "hasCredential": [
@@ -244,11 +244,81 @@
         </div>
     </header>
 
-    <!-- 01 // Experience (Segmented Filter + Interactive Timeline Rail) -->
-    <section class="section" aria-labelledby="experience-title">
+    <!-- 01 // Education & Credentials (Separated Education, Certifications & Courses) -->
+    <section class="section" aria-labelledby="credentials-title">
       <div class="section-head">
         <div class="section-title-group">
           <span class="section-index" aria-hidden="true">01 //</span>
+          <h2 id="credentials-title">Education &amp; Credentials</h2>
+        </div>
+        <div class="section-controls">
+          <div class="filter-tabs" id="credentials-tabs" role="tablist"
+            aria-label="Filter education and credentials">
+          <button
+            type="button"
+            class="filter-tab"
+            role="tab"
+            aria-selected="true"
+            data-cred-tab="education"
+          >
+            <span>Education</span>
+            <span class="tab-count">1</span>
+          </button>
+          <button
+            type="button"
+            class="filter-tab"
+            role="tab"
+            aria-selected="false"
+            data-cred-tab="certification"
+          >
+            <span>Certifications</span>
+            <span class="tab-count">1</span>
+          </button>
+          <button
+            type="button"
+            class="filter-tab"
+            role="tab"
+            aria-selected="false"
+            data-cred-tab="course"
+          >
+            <span>Courses</span>
+            <span class="tab-count">2</span>
+          </button>
+          </div>
+        </div>
+      </div>
+      <div class="credentials-list" id="credentials-list">
+          <div
+            class="cred-row animate-in"
+            data-type="education"
+            style="animation-delay: 0ms"
+            
+          >
+            <span class="cred-icon-well" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v5c3 2 7 2 10 0v-5"/></svg>
+            </span>
+            <div class="cred-main">
+              <div class="cred-title-line">
+                <h3 class="cred-title">Universitas Pembangunan Nasional “Veteran” Jawa Timur</h3>
+              </div>
+              <div class="cred-sub-line">
+                <span class="cred-highlight-pill">GPA 3.83 / 4.00</span>
+                <span>Bachelor of Information Systems</span>
+              </div>
+            </div>
+            <div class="cred-meta">
+              <span class="cred-period">2022 – 2026</span>
+              <span class="cred-location">Surabaya</span>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- 02 // Experience (Segmented Filter + Interactive Timeline Rail) -->
+    <section class="section" aria-labelledby="experience-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">02 //</span>
           <h2 id="experience-title">Experience</h2>
         </div>
         <div class="section-controls">
@@ -362,11 +432,11 @@
       </div>
     </section>
 
-    <!-- 02 // Capabilities (Unboxed Skills Matrix) -->
+    <!-- 03 // Capabilities (Unboxed Skills Matrix) -->
     <section class="section" aria-labelledby="skills-title">
       <div class="section-head">
         <div class="section-title-group">
-          <span class="section-index" aria-hidden="true">02 //</span>
+          <span class="section-index" aria-hidden="true">03 //</span>
           <h2 id="skills-title">Capabilities</h2>
         </div>
       </div>
@@ -554,11 +624,11 @@
       </div>
     </section>
 
-    <!-- 03 // Selected Projects (2-Column Editorial Bento Grid) -->
+    <!-- 04 // Selected Projects (2-Column Editorial Bento Grid) -->
     <section class="section" aria-labelledby="projects-title">
       <div class="section-head">
         <div class="section-title-group">
-          <span class="section-index" aria-hidden="true">03 //</span>
+          <span class="section-index" aria-hidden="true">04 //</span>
           <h2 id="projects-title">Selected projects</h2>
         </div>
         <a class="see-more-link" id="projects-repo-link" href="https://github.com/rakhalana" target="_blank"
@@ -728,6 +798,14 @@
               <div class="project-links" aria-label="Project links">
               <a
                 class="project-link"
+                href="https://colab.research.google.com/drive/13F0IpE8kzDx78wtJsLZ0_MAcQa2I0HYm#scrollTo=gEjkpf6Oyv6G"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Colab</span>
+              </a>
+              <a
+                class="project-link"
                 href="https://datastudio.google.com/u/0/reporting/641d47fd-b6b5-4f99-9b96-556c3cf8402a/page/IkzXE"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -747,76 +825,6 @@
               </div>
             </div>
           </article>
-      </div>
-    </section>
-
-    <!-- 04 // Credentials (Separated Education & Certifications Ledger) -->
-    <section class="section" aria-labelledby="credentials-title">
-      <div class="section-head">
-        <div class="section-title-group">
-          <span class="section-index" aria-hidden="true">04 //</span>
-          <h2 id="credentials-title">Education &amp; Certifications</h2>
-        </div>
-        <div class="section-controls">
-          <div class="filter-tabs" id="credentials-tabs" role="tablist"
-            aria-label="Filter education and certifications">
-          <button
-            type="button"
-            class="filter-tab"
-            role="tab"
-            aria-selected="true"
-            data-cred-tab="education"
-          >
-            <span>Education</span>
-            <span class="tab-count">1</span>
-          </button>
-          <button
-            type="button"
-            class="filter-tab"
-            role="tab"
-            aria-selected="false"
-            data-cred-tab="certification"
-          >
-            <span>Certifications</span>
-            <span class="tab-count">1</span>
-          </button>
-          <button
-            type="button"
-            class="filter-tab"
-            role="tab"
-            aria-selected="false"
-            data-cred-tab="course"
-          >
-            <span>Courses</span>
-            <span class="tab-count">2</span>
-          </button>
-          </div>
-        </div>
-      </div>
-      <div class="credentials-list" id="credentials-list">
-          <div
-            class="cred-row animate-in"
-            data-type="education"
-            style="animation-delay: 0ms"
-            
-          >
-            <span class="cred-icon-well" aria-hidden="true">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v5c3 2 7 2 10 0v-5"/></svg>
-            </span>
-            <div class="cred-main">
-              <div class="cred-title-line">
-                <h3 class="cred-title">Universitas Pembangunan Nasional “Veteran” Jawa Timur</h3>
-              </div>
-              <div class="cred-sub-line">
-                <span class="cred-highlight-pill">GPA 3.83 / 4.00</span>
-                <span>Bachelor of Information Systems</span>
-              </div>
-            </div>
-            <div class="cred-meta">
-              <span class="cred-period">2022 – 2026</span>
-              <span class="cred-location">Surabaya</span>
-            </div>
-          </div>
       </div>
     </section>
 

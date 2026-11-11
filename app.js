@@ -75,28 +75,54 @@
 
   const getIcon = (key, fallback = "cpu") => ICONS[key] || ICONS[fallback] || "";
 
+  // Page mode detection: main portfolio vs. dedicated subpage (experience.html / credentials.html)
+  const isSubpage =
+    typeof document !== "undefined" &&
+    (document.body.dataset.page === "subpage" || document.body.classList.contains("subpage"));
+  const subpageType =
+    typeof document !== "undefined" ? document.body.dataset.subpage || "" : "";
+
+  // URL query parameter support (e.g. ?cat=volunteer)
+  const urlParams =
+    typeof window !== "undefined" && window.location
+      ? new URLSearchParams(window.location.search)
+      : null;
+  const paramCat = urlParams ? urlParams.get("cat") : null;
+
   // Initial active categories and expanded experience
-  const defaultExpCategory =
+  let initialExpCat =
     data.experienceCategories && data.experienceCategories.length > 0
       ? data.experienceCategories[0].id
       : "professional";
 
-  const getInitialExpandedExp = () => {
-    const items = (data.experience || []).filter(
-      (item) => defaultExpCategory === "all" || item.category === defaultExpCategory
-    );
-    return items.length > 0 ? [items[0].id] : [];
-  };
+  if (subpageType === "experience") {
+    initialExpCat = paramCat || "all";
+  } else if (paramCat) {
+    initialExpCat = paramCat;
+  }
 
-  const defaultCredCategory =
+  let initialCredCat =
     data.credentialCategories && data.credentialCategories.length > 0
       ? data.credentialCategories[0].id
       : "education";
 
+  if (subpageType === "credentials") {
+    initialCredCat = paramCat || "all";
+  } else if (paramCat) {
+    initialCredCat = paramCat;
+  }
+
+  const getInitialExpandedExp = () => {
+    const items = (data.experience || []).filter(
+      (item) => initialExpCat === "all" || item.category === initialExpCat
+    );
+    return items.length > 0 ? [items[0].id] : [];
+  };
+
   const state = {
-    activeExpCategory: defaultExpCategory,
+    activeExpCategory: initialExpCat,
     expandedExpIds: new Set(getInitialExpandedExp()),
-    activeCredCategory: defaultCredCategory
+    activeCredCategory: initialCredCat
   };
 
   // ===========================================================================
@@ -227,11 +253,15 @@
     if (!tabsMount || !listMount) return;
 
     const allItems = data.experience || [];
-    const categories = data.experienceCategories || [
+    const baseCategories = data.experienceCategories || [
       { id: "professional", label: "Professional" },
       { id: "organization", label: "Organization" },
       { id: "volunteer", label: "Volunteer" }
     ];
+    const categories =
+      subpageType === "experience"
+        ? [{ id: "all", label: "All" }, ...baseCategories]
+        : baseCategories;
 
     // Render Segmented Filter Tabs with Counts
     tabsMount.innerHTML = categories
@@ -263,7 +293,11 @@
       return;
     }
 
-    listMount.innerHTML = filtered
+    const maxItems = 3;
+    const shouldLimit = !isSubpage && filtered.length > maxItems;
+    const displayItems = shouldLimit ? filtered.slice(0, maxItems) : filtered;
+
+    const cardsHtml = displayItems
       .map((item, idx) => {
         const isExpanded = state.expandedExpIds.has(item.id);
         const bulletsHtml = (item.bullets || [])
@@ -315,6 +349,18 @@
         `;
       })
       .join("");
+
+    const seeMoreHtml = shouldLimit
+      ? `
+        <div class="see-all-row">
+          <a class="see-all-btn" href="./experience.html?cat=${encodeURIComponent(state.activeExpCategory)}">
+            <span>Lihat Semua ↗</span>
+          </a>
+        </div>
+      `
+      : "";
+
+    listMount.innerHTML = cardsHtml + seeMoreHtml;
   };
 
   // ===========================================================================
@@ -452,11 +498,15 @@
     if (!tabsMount || !listMount) return;
 
     const allCreds = data.credentials || [];
-    const categories = data.credentialCategories || [
+    const baseCategories = data.credentialCategories || [
       { id: "education", label: "Education" },
       { id: "certification", label: "Certifications" },
       { id: "course", label: "Courses" }
     ];
+    const categories =
+      subpageType === "credentials"
+        ? [{ id: "all", label: "All" }, ...baseCategories]
+        : baseCategories;
 
     tabsMount.innerHTML = categories
       .map((cat) => {
@@ -491,7 +541,11 @@
       return;
     }
 
-    listMount.innerHTML = filtered
+    const maxItems = 3;
+    const shouldLimit = !isSubpage && filtered.length > maxItems;
+    const displayItems = shouldLimit ? filtered.slice(0, maxItems) : filtered;
+
+    const cardsHtml = displayItems
       .map((cred, idx) => {
         const hasUrl = Boolean(cred.url);
         const tag = hasUrl ? "a" : "div";
@@ -541,6 +595,18 @@
         `;
       })
       .join("");
+
+    const seeMoreHtml = shouldLimit
+      ? `
+        <div class="see-all-row">
+          <a class="see-all-btn" href="./credentials.html?cat=${encodeURIComponent(state.activeCredCategory)}">
+            <span>Lihat Semua ↗</span>
+          </a>
+        </div>
+      `
+      : "";
+
+    listMount.innerHTML = cardsHtml + seeMoreHtml;
   };
 
   // ===========================================================================

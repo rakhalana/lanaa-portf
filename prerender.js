@@ -1,7 +1,11 @@
 /**
  * prerender.js
- * Generates static HTML markup from data.js into index.html
- * Ensures 100% SEO & AI Crawler visibility without requiring JavaScript execution.
+ * Generates static HTML markup from data.js into:
+ *  1. index.html (Main portfolio with Section 01: Education & Credentials, 02: Experience, etc.)
+ *  2. experience.html (Full experience directory with "All" filter and unlimited list)
+ *  3. credentials.html (Full education & credentials directory with "All" filter and unlimited list)
+ *
+ * Ensures 100% SEO, AI Crawler, and Accessibility coverage without requiring JavaScript execution.
  */
 
 const fs = require("fs");
@@ -116,10 +120,13 @@ function renderHeroHtml() {
 }
 
 // 2. Render Experience Tabs & Initial Active Items
-function renderExperienceTabsHtml() {
+function renderExperienceTabsHtml(isSubpage = false) {
   const allItems = data.experience || [];
-  const categories = data.experienceCategories || [];
-  const activeCat = categories[0]?.id || "professional";
+  const baseCategories = data.experienceCategories || [];
+  const categories = isSubpage
+    ? [{ id: "all", label: "All" }, ...baseCategories]
+    : baseCategories;
+  const activeCat = isSubpage ? "all" : (categories[0]?.id || "professional");
 
   return categories
     .map((cat) => {
@@ -143,13 +150,16 @@ function renderExperienceTabsHtml() {
     .join("");
 }
 
-function renderExperienceListHtml() {
+function renderExperienceListHtml(isSubpage = false) {
   const allItems = data.experience || [];
-  const categories = data.experienceCategories || [];
-  const activeCat = categories[0]?.id || "professional";
-  const filtered = allItems.filter((item) => item.category === activeCat);
+  const activeCat = isSubpage ? "all" : (data.experienceCategories?.[0]?.id || "professional");
+  const filtered = activeCat === "all" ? allItems : allItems.filter((item) => item.category === activeCat);
 
-  return filtered
+  const maxItems = 3;
+  const shouldLimit = !isSubpage && filtered.length > maxItems;
+  const displayItems = shouldLimit ? filtered.slice(0, maxItems) : filtered;
+
+  const cardsHtml = displayItems
     .map((item, idx) => {
       const isExpanded = idx === 0;
       const bulletsHtml = (item.bullets || [])
@@ -200,6 +210,17 @@ function renderExperienceListHtml() {
           </article>`;
     })
     .join("");
+
+  const seeMoreHtml = shouldLimit
+    ? `
+        <div class="see-all-row">
+          <a class="see-all-btn" href="./experience.html?cat=${encodeURIComponent(activeCat)}">
+            <span>Lihat Semua ↗</span>
+          </a>
+        </div>`
+    : "";
+
+  return cardsHtml + seeMoreHtml;
 }
 
 // 3. Render Capabilities / Skills HTML
@@ -294,10 +315,13 @@ function renderProjectsHtml() {
 }
 
 // 5. Render Credentials Tabs & Initial Active Items
-function renderCredentialsTabsHtml() {
+function renderCredentialsTabsHtml(isSubpage = false) {
   const allCreds = data.credentials || [];
-  const categories = data.credentialCategories || [];
-  const activeCat = categories[0]?.id || "education";
+  const baseCategories = data.credentialCategories || [];
+  const categories = isSubpage
+    ? [{ id: "all", label: "All" }, ...baseCategories]
+    : baseCategories;
+  const activeCat = isSubpage ? "all" : (categories[0]?.id || "education");
 
   return categories
     .map((cat) => {
@@ -322,13 +346,16 @@ function renderCredentialsTabsHtml() {
     .join("");
 }
 
-function renderCredentialsListHtml() {
+function renderCredentialsListHtml(isSubpage = false) {
   const allCreds = data.credentials || [];
-  const categories = data.credentialCategories || [];
-  const activeCat = categories[0]?.id || "education";
-  const filtered = allCreds.filter((item) => item.type === activeCat);
+  const activeCat = isSubpage ? "all" : (data.credentialCategories?.[0]?.id || "education");
+  const filtered = activeCat === "all" ? allCreds : allCreds.filter((item) => item.type === activeCat);
 
-  return filtered
+  const maxItems = 3;
+  const shouldLimit = !isSubpage && filtered.length > maxItems;
+  const displayItems = shouldLimit ? filtered.slice(0, maxItems) : filtered;
+
+  const cardsHtml = displayItems
     .map((cred, idx) => {
       const hasUrl = Boolean(cred.url);
       const tag = hasUrl ? "a" : "div";
@@ -376,6 +403,17 @@ function renderCredentialsListHtml() {
           </${tag}>`;
     })
     .join("");
+
+  const seeMoreHtml = shouldLimit
+    ? `
+        <div class="see-all-row">
+          <a class="see-all-btn" href="./credentials.html?cat=${encodeURIComponent(activeCat)}">
+            <span>Lihat Semua ↗</span>
+          </a>
+        </div>`
+    : "";
+
+  return cardsHtml + seeMoreHtml;
 }
 
 // 6. JSON-LD Schema (Golden Standard for AI Web Readers & Search Engines)
@@ -422,7 +460,7 @@ function generateJsonLd() {
   return JSON.stringify(schema, null, 2);
 }
 
-// 7. Noscript Fallback: Complete Text for Non-JS AI Crawlers (Includes all tabs!)
+// 7. Noscript Fallback: Complete Text for Non-JS AI Crawlers
 function generateNoscriptFallback() {
   const experiences = data.experience || [];
   const credentials = data.credentials || [];
@@ -468,8 +506,8 @@ function generateNoscriptFallback() {
     </noscript>`;
 }
 
-// Assemble index.html
-function prerender() {
+// Prerender index.html
+function prerenderIndex() {
   const profile = data.profile || {};
   const metaDescription = escapeHtml(
     `${profile.name} — ${profile.role}. Information Systems graduate based in ${profile.city}.`
@@ -477,12 +515,12 @@ function prerender() {
   const pageTitle = `${escapeHtml(profile.name || "Rakha Maulana")} · Portfolio`;
 
   const heroHtml = renderHeroHtml();
-  const expTabsHtml = renderExperienceTabsHtml();
-  const expListHtml = renderExperienceListHtml();
+  const expTabsHtml = renderExperienceTabsHtml(false);
+  const expListHtml = renderExperienceListHtml(false);
   const skillsHtml = renderSkillsHtml();
   const projectsHtml = renderProjectsHtml();
-  const credTabsHtml = renderCredentialsTabsHtml();
-  const credListHtml = renderCredentialsListHtml();
+  const credTabsHtml = renderCredentialsTabsHtml(false);
+  const credListHtml = renderCredentialsListHtml(false);
   const jsonLd = generateJsonLd();
   const noscriptHtml = generateNoscriptFallback();
 
@@ -530,11 +568,28 @@ ${jsonLd}
     <header id="hero-mount">${heroHtml}
     </header>
 
-    <!-- 01 // Experience (Segmented Filter + Interactive Timeline Rail) -->
-    <section class="section" aria-labelledby="experience-title">
+    <!-- 01 // Education & Credentials (Separated Education, Certifications & Courses) -->
+    <section class="section" aria-labelledby="credentials-title">
       <div class="section-head">
         <div class="section-title-group">
           <span class="section-index" aria-hidden="true">01 //</span>
+          <h2 id="credentials-title">Education &amp; Credentials</h2>
+        </div>
+        <div class="section-controls">
+          <div class="filter-tabs" id="credentials-tabs" role="tablist"
+            aria-label="Filter education and credentials">${credTabsHtml}
+          </div>
+        </div>
+      </div>
+      <div class="credentials-list" id="credentials-list">${credListHtml}
+      </div>
+    </section>
+
+    <!-- 02 // Experience (Segmented Filter + Interactive Timeline Rail) -->
+    <section class="section" aria-labelledby="experience-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">02 //</span>
           <h2 id="experience-title">Experience</h2>
         </div>
         <div class="section-controls">
@@ -546,11 +601,11 @@ ${jsonLd}
       </div>
     </section>
 
-    <!-- 02 // Capabilities (Unboxed Skills Matrix) -->
+    <!-- 03 // Capabilities (Unboxed Skills Matrix) -->
     <section class="section" aria-labelledby="skills-title">
       <div class="section-head">
         <div class="section-title-group">
-          <span class="section-index" aria-hidden="true">02 //</span>
+          <span class="section-index" aria-hidden="true">03 //</span>
           <h2 id="skills-title">Capabilities</h2>
         </div>
       </div>
@@ -558,11 +613,11 @@ ${jsonLd}
       </div>
     </section>
 
-    <!-- 03 // Selected Projects (2-Column Editorial Bento Grid) -->
+    <!-- 04 // Selected Projects (2-Column Editorial Bento Grid) -->
     <section class="section" aria-labelledby="projects-title">
       <div class="section-head">
         <div class="section-title-group">
-          <span class="section-index" aria-hidden="true">03 //</span>
+          <span class="section-index" aria-hidden="true">04 //</span>
           <h2 id="projects-title">Selected projects</h2>
         </div>
         <a class="see-more-link" id="projects-repo-link" href="${repoLinkUrl}" target="_blank"
@@ -571,23 +626,6 @@ ${jsonLd}
         </a>
       </div>
       <div class="projects-grid" id="projects-grid">${projectsHtml}
-      </div>
-    </section>
-
-    <!-- 04 // Credentials (Separated Education & Certifications Ledger) -->
-    <section class="section" aria-labelledby="credentials-title">
-      <div class="section-head">
-        <div class="section-title-group">
-          <span class="section-index" aria-hidden="true">04 //</span>
-          <h2 id="credentials-title">Education &amp; Certifications</h2>
-        </div>
-        <div class="section-controls">
-          <div class="filter-tabs" id="credentials-tabs" role="tablist"
-            aria-label="Filter education and certifications">${credTabsHtml}
-          </div>
-        </div>
-      </div>
-      <div class="credentials-list" id="credentials-list">${credListHtml}
       </div>
     </section>
 ${noscriptHtml}
@@ -602,8 +640,148 @@ ${noscriptHtml}
 `;
 
   fs.writeFileSync(path.join(__dirname, "index.html"), fullHtml, "utf-8");
-  console.log("Successfully prerendered index.html with 100% SEO, AI & schema coverage!");
+  console.log("Successfully prerendered index.html with Section 01: Education & Credentials!");
 }
 
-prerender();
+// Prerender experience.html (Dedicated full page)
+function prerenderExperiencePage() {
+  const profile = data.profile || {};
+  const pageTitle = `Experience · ${escapeHtml(profile.name || "Rakha Maulana")}`;
+  const metaDescription = `Full professional, organization, and volunteer experience record of ${escapeHtml(profile.name)}.`;
+  const expTabsHtml = renderExperienceTabsHtml(true);
+  const expListHtml = renderExperienceListHtml(true);
 
+  const fullHtml = `<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${pageTitle}</title>
+  <meta name="description" content="${metaDescription}">
+  <meta name="author" content="${escapeHtml(profile.name)}">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body data-page="subpage" data-subpage="experience">
+  <div class="page-progress" aria-hidden="true"></div>
+  <div class="cursor-aura" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="subpage-head">
+      <a class="back-link" href="./index.html">← Back to portfolio</a>
+      <div class="subpage-title-group">
+        <h1 class="subpage-title">Experience</h1>
+        <p class="subpage-subtitle">Complete record of professional roles, organization leadership, and volunteer contributions.</p>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="experience-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">DIR //</span>
+          <h2 id="experience-title">All Experience Entries</h2>
+        </div>
+        <div class="section-controls">
+          <div class="filter-tabs" id="experience-tabs" role="tablist" aria-label="Filter experience by category">${expTabsHtml}
+          </div>
+        </div>
+      </div>
+      <div class="experience-list" id="experience-list">${expListHtml}
+      </div>
+    </section>
+  </main>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
+`;
+
+  fs.writeFileSync(path.join(__dirname, "experience.html"), fullHtml, "utf-8");
+  console.log("Successfully prerendered experience.html!");
+}
+
+// Prerender credentials.html (Dedicated full page)
+function prerenderCredentialsPage() {
+  const profile = data.profile || {};
+  const pageTitle = `Education & Credentials · ${escapeHtml(profile.name || "Rakha Maulana")}`;
+  const metaDescription = `Complete academic degrees, professional certifications, and completed courses of ${escapeHtml(profile.name)}.`;
+  const credTabsHtml = renderCredentialsTabsHtml(true);
+  const credListHtml = renderCredentialsListHtml(true);
+
+  const fullHtml = `<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${pageTitle}</title>
+  <meta name="description" content="${metaDescription}">
+  <meta name="author" content="${escapeHtml(profile.name)}">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body data-page="subpage" data-subpage="credentials">
+  <div class="page-progress" aria-hidden="true"></div>
+  <div class="cursor-aura" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="subpage-head">
+      <a class="back-link" href="./index.html">← Back to portfolio</a>
+      <div class="subpage-title-group">
+        <h1 class="subpage-title">Education &amp; Credentials</h1>
+        <p class="subpage-subtitle">Academic degrees, certifications, and specialized cohort course completions.</p>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="credentials-title">
+      <div class="section-head">
+        <div class="section-title-group">
+          <span class="section-index" aria-hidden="true">DIR //</span>
+          <h2 id="credentials-title">All Credentials &amp; Certifications</h2>
+        </div>
+        <div class="section-controls">
+          <div class="filter-tabs" id="credentials-tabs" role="tablist"
+            aria-label="Filter education and credentials">${credTabsHtml}
+          </div>
+        </div>
+      </div>
+      <div class="credentials-list" id="credentials-list">${credListHtml}
+      </div>
+    </section>
+  </main>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
+`;
+
+  fs.writeFileSync(path.join(__dirname, "credentials.html"), fullHtml, "utf-8");
+  console.log("Successfully prerendered credentials.html!");
+}
+
+function prerenderAll() {
+  prerenderIndex();
+  prerenderExperiencePage();
+  prerenderCredentialsPage();
+}
+
+prerenderAll();

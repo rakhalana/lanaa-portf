@@ -309,8 +309,9 @@ window.PORTFOLIO_DATA = {
       stack: ["Python", "pandas", "Google Colab", "Looker Studio"],
       icon: "scatter-chart",
       links: [
+        { label: "Colab", url: "https://colab.research.google.com/drive/13F0IpE8kzDx78wtJsLZ0_MAcQa2I0HYm#scrollTo=gEjkpf6Oyv6G" },
         { label: "Dashboard ↗", url: "https://datastudio.google.com/u/0/reporting/641d47fd-b6b5-4f99-9b96-556c3cf8402a/page/IkzXE" },
-        { label: "Slideshow ↗", url: "https://docs.google.com/presentation/d/1MAsGcRPOIA7TvJfDSiGJZGp3mo_IUnKp/edit?usp=sharing&ouid=101130327753642175610&rtpof=true&sd=true" }
+        { label: "Slideshow ↗", url: "https://docs.google.com/presentation/d/1MAsGcRPOIA7TvJfDSiGJZGp3mo_IUnKp/edit?usp=sharing&ouid=101130327753642175610&rtpof=true&sd=true" },
       ]
     }
   ],
@@ -343,7 +344,7 @@ window.PORTFOLIO_DATA = {
       icon: "shield-check",
       title: "Junior Web Programmer",
       subtitle: "Lembaga Sertifikasi Profesi (LSP) · BNSP",
-      highlight: "Certified",
+      highlight: "Competent",
       period: "Dec 2025 – Dec 2028",
       meta: "Verify ↗",
       url: "https://"
